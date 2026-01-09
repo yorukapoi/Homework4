@@ -72,5 +72,6 @@ jobs:
         id: deploy-to-webapp
         with:
           app-name: 'DasHomeworkreal'
-          slot-name: 'Production'
+          package: api_gateway
+
           
