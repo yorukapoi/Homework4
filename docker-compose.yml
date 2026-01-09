@@ -1,0 +1,73 @@
+version: "3.9"
+
+services:
+  api-gateway:
+    build:
+      context: .
+      dockerfile: api_gateway/Dockerfile
+    container_name: api-gateway
+    environment:
+      TECH_SERVICE_URL: http://technical-analysis-service:8001
+      LSTM_SERVICE_URL: http://lstm-prediction-service:8002
+      ONCHAIN_SERVICE_URL: http://onchain-sentiment-service:8003
+      CRYPTO_DB_PATH: /data/crypto_data.db
+    ports:
+      - "8000:8000"
+    depends_on:
+      - technical-analysis-service
+      - lstm-prediction-service
+      - onchain-sentiment-service
+    volumes:
+      - ../homework3/crypto_data.db:/data/crypto_data.db:ro
+
+  technical-analysis-service:
+    build:
+      context: .
+      dockerfile: technical_analysis_service/Dockerfile
+    container_name: technical-analysis-service
+    environment:
+      CRYPTO_DB_PATH: /data/crypto_data.db
+    ports:
+      - "8001:8001"
+    volumes:
+      - ../homework3/crypto_data.db:/data/crypto_data.db:ro
+
+  lstm-prediction-service:
+    build:
+      context: .
+      dockerfile: lstm_prediction_service/Dockerfile
+    container_name: lstm-prediction-service
+    environment:
+      CRYPTO_DB_PATH: /data/crypto_data.db
+    ports:
+      - "8002:8002"
+    volumes:
+      - ../homework3/crypto_data.db:/data/crypto_data.db:ro
+
+  onchain-sentiment-service:
+    build:
+      context: .
+      dockerfile: onchain_sentiment_service/Dockerfile
+    container_name: onchain-sentiment-service
+    environment:
+      CRYPTO_DB_PATH: /data/crypto_data.db
+    ports:
+      - "8003:8003"
+    volumes:
+      - ../homework3/crypto_data.db:/data/crypto_data.db:ro
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        API_URL: http://api-gateway:8000
+    container_name: crypto-frontend
+    environment:
+      NEXT_PUBLIC_API_URL: http://api-gateway:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api-gateway
+
+

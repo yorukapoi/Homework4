@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  min-height: 100vh;
+  color: #e2e8f0;
+}
+
+.glass-card {
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+  border-color: rgba(148, 163, 184, 0.2);
+}
+
+.gradient-header {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+  padding: 2px;
+  border-radius: 12px;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-card {
+  @apply glass-card p-4;
+}
+
+.stat-label {
+  @apply text-slate-400 text-xs font-medium uppercase tracking-wide mb-1;
+}
+
+.stat-value {
+  @apply text-2xl font-bold text-white;
+}
+
+.positive {
+  @apply text-green-400;
+}
+
+.negative {
+  @apply text-red-400;
+}
+
+.neutral {
+  @apply text-slate-300;
+}
+
+table {
+  @apply w-full border-collapse;
+}
+
+th {
+  @apply bg-slate-800/50 p-3 text-left font-semibold text-slate-300 text-sm uppercase tracking-wide;
+}
+
+td {
+  @apply p-3 border-b border-slate-700/50 text-slate-200;
+}
+
+tr:hover {
+  @apply bg-slate-700/30;
+}
+
+button {
+  @apply px-5 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+select {
+  @apply px-3 py-2 bg-slate-800/50 border border-slate-600 rounded-lg text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+}
+
+input {
+  @apply px-3 py-2 bg-slate-800/50 border border-slate-600 rounded-lg text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+}
+
+a {
+  @apply text-blue-400 hover:text-blue-300 transition-colors;
+}
+
+.crypto-card {
+  @apply glass-card p-5 cursor-pointer;
+}
+
+.crypto-card-header {
+  @apply flex items-start justify-between mb-4;
+}
+
+.crypto-symbol {
+  @apply text-xl font-bold text-white;
+}
+
+.crypto-price {
+  @apply text-2xl font-bold text-white mt-1;
+}
+
+.price-change {
+  @apply text-sm font-semibold px-2 py-1 rounded-md inline-block;
+}
+
+.price-change.up {
+  @apply bg-green-500/20 text-green-400;
+}
+
+.price-change.down {
+  @apply bg-red-500/20 text-red-400;
+}
+
+.metric-row {
+  @apply flex justify-between items-center py-2 border-b border-slate-700/30 last:border-0;
+}
+
+.metric-label {
+  @apply text-slate-400 text-sm;
+}
+
+.metric-value {
+  @apply text-slate-100 font-medium text-sm;
+}
+
+.tab-button {
+  @apply px-6 py-3 font-medium transition-all duration-200 border-b-2 border-transparent;
+}
+
+.tab-button.active {
+  @apply text-blue-400 border-blue-400;
+}
+
+.tab-button:not(.active) {
+  @apply text-slate-400 hover:text-slate-300;
+}
+
+.kpi-grid {
+  @apply grid grid-cols-2 md:grid-cols-4 gap-4;
+}
+
+.sparkline-container {
+  @apply h-12 mt-3;
+}
+
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: rgba(30, 41, 59, 0.3);
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.3);
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.5);
+  }
+}
+
+
